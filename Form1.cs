@@ -22,10 +22,9 @@ namespace Simulacion
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-            string fileName = "Departamentos.txt";
-           
+        private void LeerDepartamentos(string fileName)
+        {             
+
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
 
@@ -36,9 +35,14 @@ namespace Simulacion
                 departamento.Nombre = reader.ReadLine();
 
                 departamentos.Add(departamento);
-            }           
+            }
             reader.Close();
+        }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+            LeerDepartamentos(@"..\..\Departamentos.txt");
             //Como la lista de departamentos tiene codigo y nombre
             //hay que decirle al combobox cual de los dos mostrar en pantalla
             comboBox1.ValueMember = "codigo";
@@ -49,7 +53,7 @@ namespace Simulacion
 
         private void LeerTemperaturas ()
         {
-            string fileName = "Temperatura.txt";
+            string fileName = @"..\..\Temperatura.txt";
 
             FileStream stream = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             StreamReader reader = new StreamReader(stream);
@@ -65,6 +69,7 @@ namespace Simulacion
             }
             reader.Close();
         }
+
 
         private void Guardar(string fileName)
         {
@@ -84,17 +89,7 @@ namespace Simulacion
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //ingresar una medicion de temperatura
-            Temperatura temperatura = new Temperatura();
-            temperatura.CodigoDepartamento =Convert.ToInt32(comboBox1.SelectedValue);
-            temperatura.Medicion = Convert.ToDouble(textBox1.Text);
-            temperatura.Fecha = dateTimePicker1.Value;
-
-            //guardarla en la lista
-            temperaturas.Add(temperatura);
-
-            //Guardar la lista en el archivo temperatura
-            Guardar("Temperatura.txt");
+            
 
 
         }

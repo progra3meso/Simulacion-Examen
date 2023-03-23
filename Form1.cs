@@ -89,7 +89,7 @@ namespace Simulacion
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Temperatura temperatura = new Temperatura;
+            Temperatura temperatura = new Temperatura();
 
             temperatura.CodigoDepartamento = Convert.ToInt32(comboBox1.SelectedValue);
             temperatura.Fecha = dateTimePicker1.Value;

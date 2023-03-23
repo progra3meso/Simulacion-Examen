@@ -51,7 +51,7 @@ namespace Simulacion
             comboBox1.DataSource = departamentos;
         }
 
-        private void LeerTemperaturas ()
+        private void LeerTemperaturas()
         {
             string fileName = @"..\..\Temperatura.txt";
 
@@ -89,7 +89,16 @@ namespace Simulacion
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            
+            Temperatura temperatura = new Temperatura;
+
+            temperatura.CodigoDepartamento = Convert.ToInt32(comboBox1.SelectedValue);
+            temperatura.Fecha = dateTimePicker1.Value;
+            temperatura.Medicion = Convert.ToInt32(textBox1.Text);
+
+            temperaturas.Add(temperatura);
+
+            Guardar(@"..\..\Temperaturas.txt");
+
 
 
         }
